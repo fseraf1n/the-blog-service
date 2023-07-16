@@ -1,27 +1,27 @@
 package com.apper.theblogservice.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.Data;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
-@Entity
+
 @Data
-@Table(name = "BLOGGER")
-public class Blogger {
+@Entity
+@Table(name = "BLOG")
+public class Blog {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    @Column(name = "COMPLETE_NAME")
-    private String name;
 
-    @Email
-    @Column(name = "EMAIL")
-    private String email;
-    @Column(name = "PASSWORD")
-    private String password;
+    @Column(name = "TITLE")
+    private String title;
+
+    @Column(name = "BODY")
+    private String body;
+
+    @Column(name = "BLOGGER_ID")
+    private String bloggerId;
 
     @Column(name = "CREATED_AT")
     private LocalDateTime createdAt;
@@ -35,7 +35,6 @@ public class Blogger {
         createdAt = now;
         lastUpdate = now;
     }
-
     @PreUpdate
     public void setLastUpdate() {
         lastUpdate = LocalDateTime.now();
